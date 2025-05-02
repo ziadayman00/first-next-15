@@ -2,7 +2,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { prisma } from "../utils/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import  BlogPostCard  from "@/components/BlogPostCard";
+import  { BlogPostCard }  from "@/components/BlogPostCard";
 import { redirect } from "next/navigation";
 
 async function getData(userId: string) {
