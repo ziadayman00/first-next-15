@@ -5,7 +5,7 @@ interface IappProps {
   data: {
     id: string;
     title: string;
-    content: string;
+    Content: string;
     imageUrl: string;
     authorId: string;
     authorName: string;
@@ -34,7 +34,7 @@ export function BlogPostCard({ data }: IappProps) {
           </h3>
 
           <p className="mb-4 text-sm text-gray-600 line-clamp-2">
-            {data.content}
+            {data.Content}
           </p>
 
           <div className="flex items-center justify-between">
