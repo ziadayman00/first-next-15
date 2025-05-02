@@ -3,6 +3,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import Link from "next/link";
 import { prisma } from "../utils/db";
 import BlogPostCard from "@/components/BlogPostCard";
+import { redirect } from "next/navigation";
 
 async function getData(userId: string){
     const data = await prisma.blogPost.findMany({
@@ -19,14 +20,19 @@ async function getData(userId: string){
 export default async function DashboardRoute(){
     const {getUser} = getKindeServerSession();
     const user = await getUser();
+    
+    if(!user || !user.id){
+        return redirect('api/auth/register')
+    }
 
-    const data = await getData(user.id);
+    const data = await getData(user?.id);
+
 
     return (
         <div className="flex flex-col justify-center pt-1.5">
             <div>hi <span className="font-bold text-center">{user?.given_name}</span> from dashboard</div>
             <div className="flex justify-between items-center my-2">
-                <h1 className="text-3xl font-medium">Your Blog Articals</h1>
+                <h1 className="text-3xl font-medium">Your Blog Articles</h1>
                 <Link href="/dashboard/create" className={buttonVariants()}>Create Post</Link>
             </div>
 
