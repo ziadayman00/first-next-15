@@ -3,6 +3,18 @@ import { prisma } from "./utils/db";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
+interface BlogPost {
+  id: string;
+  title: string;
+  Content: string;
+  imageUrl: string;
+  authorId: string;
+  authorName: string;
+  authorImage: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 async function getData() {
   //fake loading
   await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -41,7 +53,7 @@ async function BlogPosts() {
   const data = await getData();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-      {data.map((item) => (
+      {data.map((item: BlogPost) => (
         <BlogPostCard data={item} key={item.id} />
       ))}
     </div>
